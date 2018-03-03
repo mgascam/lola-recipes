@@ -11,7 +11,7 @@ exports.addRecipe = (req, res) => {
 };
 
 exports.createRecipe = async (req, res) => {
-    const recipe = new Recipe(req.body);
-    await recipe.save();
-    res.redirect('/');
+    const recipe = await (new Recipe(req.body)).save();
+    req.flash('success', `Successfully create ${recipe.title}`);
+    res.redirect(`/recipe/${recipe.slug}`);
 };

@@ -17,11 +17,11 @@ const recipeSchema = new mongoose.Schema({
 });
 
 recipeSchema.pre('save', function(next) {
-  if (!this.isModified('name')) {
+  if (!this.isModified('title')) {
     next(); // skip it
     return; // stop this function from running
   }
-  this.slug = slug(this.name);
+  this.slug = slug(this.title);
   next();
   // TODO make more resilient so slugs are unique
 });
