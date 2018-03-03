@@ -1,0 +1,10 @@
+mixin recipeCard(recipe = {})
+    .recipe
+        .recipe__hero
+            .store__actions
+                button soon
+            img(src=`/uploads/${recipe.photo || 'recipe.png'}`)
+            h2.title
+                a(href=`/recipe/${recipe.slug}`) #{recipe.title}
+        .recipe__details
+            p= recipe.description.split(' ').slice(0, 25).join(' ')
