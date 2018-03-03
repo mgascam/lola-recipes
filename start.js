@@ -18,7 +18,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // READY?! Let's go!
-
+require('./models/Recipe');
 
 // Start our app!
 const app = require('./app');
