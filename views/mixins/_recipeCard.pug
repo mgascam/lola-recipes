@@ -1,8 +1,10 @@
 mixin recipeCard(recipe = {})
     .recipe
         .recipe__hero
-            .store__actions
-                button soon
+            .recipe__actions
+                .recipe__action.recipe__action--edit
+                    a(href=`/recipes/${recipe._id}/edit`)
+                        != h.icon('pencil')
             img(src=`/uploads/${recipe.photo || 'recipe.png'}`)
             h2.title
                 a(href=`/recipe/${recipe.slug}`) #{recipe.title}

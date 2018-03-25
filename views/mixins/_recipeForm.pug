@@ -1,13 +1,20 @@
 mixin recipeForm(recipe = {})
-  form(action="/add" method="POST" class="card")
+  form(action=`/add/${recipe._id || ''}` method="POST" class="card")
     label(for="title") Title
-    input(type="text" name="title" id="title")
+    input(type="text" name="title" id="title" value=recipe.title)
     label(for="description") Description
-    textarea(name="description" id="description")
+    textarea(name="description" id="description")= recipe.description
     - const choices = ['Carne', 'Pescado', 'Postre']
+    - const tags = recipe.tags || [];
     ul.tags
       each choice in choices
         .tag.tag__choice
-          input(type="checkbox" id=choice value=choice name="tags")
+          input(
+            type="checkbox"
+            id=choice
+            value=choice
+            name="tags"
+            checked=(tags.includes(choice))
+          )
           label(for=choice) #{choice}
     input(type="submit" value="Save →" class="button")
