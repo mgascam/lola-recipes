@@ -66,3 +66,12 @@ exports.updateRecipe = async (req, res) => {
     req.flash('success', `Successfully updated <strong>${recipe.title}</strong>. <a href="/recipes/${recipe.slug}">View Recipe</a>`);
     res.redirect(`/recipes/${recipe._id}/edit`);
 };
+
+exports.getRecipeBySlug = async (req, res, next) => {
+    const recipe = await Recipe.findOne({
+        slug: req.params.slug
+    });
+    if (!recipe) return next();
+    res.render('recipe', { recipe, title: recipe.title })
+
+};
