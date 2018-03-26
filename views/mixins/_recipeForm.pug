@@ -1,9 +1,32 @@
 mixin recipeForm(recipe = {})
-  form(action=`/add/${recipe._id || ''}` method="POST" class="card")
+  form(
+    action=`/add/${recipe._id || ''}`
+    method="POST" class="card" enctype="multipart/form-data"
+  )
     label(for="title") Title
-    input(type="text" name="title" id="title" value=recipe.title)
+    input(
+        type="text"
+        name="title"
+        id="title"
+        value=recipe.title
+    )
     label(for="description") Description
-    textarea(name="description" id="description")= recipe.description
+    textarea(
+        name="description"
+        id="description"
+    )= recipe.description
+    label(for="photo") Photo
+    input(
+        type="file"
+        name="photo"
+        id="photo"
+        accept="image/gif, image/png, image/jpeg"
+    )
+    if recipe.photo
+        img(
+            src=`/uploads/${recipe.title}`, alt=recipe.title
+            width=200
+        )
     - const choices = ['Carne', 'Pescado', 'Postre']
     - const tags = recipe.tags || [];
     ul.tags
