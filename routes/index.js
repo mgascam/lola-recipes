@@ -17,5 +17,8 @@ router.post('/add/:id',
     catchErrors(recipeController.updateRecipe));
 router.get('/recipes/:id/edit', catchErrors(recipeController.editRecipe));
 router.get('/recipe/:slug', catchErrors(recipeController.getRecipeBySlug));
+router.get('/tags', catchErrors(recipeController.getRecipesByTag))
+router.get('/tags/:tag', catchErrors(recipeController.getRecipesByTag))
+
 
 module.exports = router;

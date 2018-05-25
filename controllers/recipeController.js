@@ -75,3 +75,9 @@ exports.getRecipeBySlug = async (req, res, next) => {
     res.render('recipe', { recipe, title: recipe.title })
 
 };
+
+exports.getRecipesByTag = async (req, res) => {
+    const tags = await Recipe.getTagsList();
+    const tag = req.params.tag;
+    res.render('tag', { tags, title: 'Tags', tag });
+};
