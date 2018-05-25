@@ -21,12 +21,17 @@ const recipeSchema = new mongoose.Schema({
     photo: String
 });
 
-recipeSchema.pre('save', function (next) {
+recipeSchema.pre('save', async function (next) {
     if (!this.isModified('title')) {
         next(); // skip it
         return; // stop this function from running
     }
     this.slug = slug(this.title);
+    const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
+    const storesWithSlug = await this.constructor.find({ slug: slugRegEx });
+    if (storesWithSlug.length) {
+      this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
+    }
     next();
     // TODO make more resilient so slugs are unique
 });
