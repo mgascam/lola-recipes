@@ -52,7 +52,7 @@ exports.getRecipes = async (req, res) => {
 
 exports.editRecipe = async (req, res) => {
    const recipe = await Recipe.findOne({ _id: req.params.id });
-   // TODO confirm owner of the store
+   // TODO confirm owner of the recipe
    res.render('editRecipe', { title: `Edit ${recipe.title}`, recipe })
 };
 
