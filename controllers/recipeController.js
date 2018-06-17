@@ -77,7 +77,11 @@ exports.getRecipeBySlug = async (req, res, next) => {
 };
 
 exports.getRecipesByTag = async (req, res) => {
-    const tags = await Recipe.getTagsList();
     const tag = req.params.tag;
-    res.render('tag', { tags, title: 'Tags', tag });
+    const tagQuery = tag || { $exists: true };
+    const tagsPromise = Recipe.getTagsList();
+    const recipesPromise = Recipe.find({ tags: tagQuery });
+    const [tags, recipes] = await Promise.all([tagsPromise, recipesPromise]);
+
+    res.render('tag', { tags, title: 'Tags', tag, recipes });
 };
