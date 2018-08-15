@@ -26,6 +26,12 @@ const recipeSchema = new mongoose.Schema({
     }
 });
 
+// Define indexes
+recipeSchema.index({
+    title: 'text',
+    description: 'text'
+});
+
 recipeSchema.pre('save', async function (next) {
     if (!this.isModified('title')) {
         next(); // skip it

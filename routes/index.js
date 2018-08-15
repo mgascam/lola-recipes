@@ -47,5 +47,9 @@ router.post('/account/reset/:token',
     authController.confirmedPasswords,
     catchErrors(authController.update)
 );
+/**
+ * API
+ */
+router.get('/api/search', catchErrors(recipeController.searchRecipes));
 
 module.exports = router;

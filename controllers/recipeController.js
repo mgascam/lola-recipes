@@ -92,3 +92,18 @@ exports.getRecipesByTag = async (req, res) => {
 
     res.render('tag', {tags, title: 'Tags', tag, recipes});
 };
+
+exports.searchRecipes = async (req, res) => {
+    const recipes = await Recipe.find({
+        $text: {
+            $search: req.query.q
+        }
+    }, {
+        score: {
+            $meta: 'textScore'
+        }
+    }).sort({
+        score: { $meta: 'textScore'}
+    });
+    res.json(recipes);
+};
