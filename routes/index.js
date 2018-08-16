@@ -51,5 +51,6 @@ router.post('/account/reset/:token',
  * API
  */
 router.get('/api/search', catchErrors(recipeController.searchRecipes));
+router.post('/api/recipes/:id/heart', catchErrors(recipeController.heartRecipe));
 
 module.exports = router;

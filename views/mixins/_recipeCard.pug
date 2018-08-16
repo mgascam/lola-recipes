@@ -2,6 +2,13 @@ mixin recipeCard(recipe = {})
     .recipe
         .recipe__hero
             .recipe__actions
+                if user
+                    .recipe__action.recipe__action--heart
+                        form.heart(method="POST" action=`/api/recipes/${recipe._id}/heart`)
+                            - const heartStrings = user.hearts.map(obj => obj.toString());
+                            - const heartClass = heartStrings.includes(recipe._id.toString()) ? 'heart__button--hearted' : '';
+                            button.heart__button(type="submit" name="heart" class=heartClass)
+                                != h.icon('heart')
                 if user && recipe.author.equals(user._id)
                     .recipe__action.recipe__action--edit
                         a(href=`/recipes/${recipe._id}/edit`)
