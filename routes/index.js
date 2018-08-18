@@ -47,6 +47,7 @@ router.post('/account/reset/:token',
     authController.confirmedPasswords,
     catchErrors(authController.update)
 );
+router.get('/hearts', authController.isLoggedIn, catchErrors(recipeController.getHearts));
 /**
  * API
  */

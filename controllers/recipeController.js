@@ -119,3 +119,8 @@ exports.heartRecipe = async (req,res) => {
     );
     res.json(user);
 };
+
+exports.getHearts = async (req,res) => {
+    const recipes = await Recipe.find({ _id: { $in: req.user.hearts }});
+    res.render('recipes', { title: 'Hearted Recipes', recipes });
+}
