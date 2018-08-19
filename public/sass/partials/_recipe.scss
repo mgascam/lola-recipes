@@ -5,7 +5,7 @@
 }
 
 .recipe {
-  background:white;
+  background:$white;
   margin: 1.25em 0 0 1.25em;
   width: calc(33.3333% - 1.25em);
   box-shadow: $shad;
@@ -36,7 +36,7 @@
   padding-top: 10px;
   padding-bottom: 20px;
   display: flex;
-  color: white;
+  color: $white;
   align-items: center;
   justify-content: space-around;
 }
@@ -45,7 +45,7 @@
   font-size: 10px;
   svg {
     width: 25px;
-    fill: white
+    fill: $white
   }
   &--edit {
     a {

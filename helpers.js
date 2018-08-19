@@ -21,7 +21,7 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Lola Recipes!`;
 
 exports.menu = [
-  { slug: '/recipes', title: 'Recipes', icon: 'store', },
+  { slug: '/recipes', title: 'Recipes', icon: 'recipe', },
   { slug: '/tags', title: 'Tags', icon: 'tag', },
   { slug: '/top', title: 'Top', icon: 'top', },
   { slug: '/add', title: 'Add', icon: 'add', },

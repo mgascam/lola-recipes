@@ -34,7 +34,7 @@
     position: absolute;
   }
   &__details {
-    background: white;
+    background: $white;
     // clip-path: polygon(0px 2vw, 100% 0, 100% calc(100% - 2vw), 0% 100%);
     position: relative;
     padding: 3rem;
@@ -52,7 +52,7 @@
     margin-top: -3rem;
     margin-right: -5rem;
     background: $black;
-    color: white;
+    color: $white;
     display: inline-block;
     float: right;
     position: relative;

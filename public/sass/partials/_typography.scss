@@ -13,7 +13,8 @@ html {
 
 body {
   font-size:1.5rem;
-  color:$black;
+  //color:$black;
+  color:#046b1d;
 }
 
 h1, h2, h3, h4, h5, h6, {
@@ -25,7 +26,7 @@ h1, h2, h3, h4, h5, h6, {
 
 a {
   text-decoration: none;
-  color:$black;
+  color:$white;
 }
 
 p a {
@@ -65,7 +66,7 @@ p {
   // inline link inside
   a {
     border-bottom: 0;
-    $yellowa: rgba($yellow,0.8);
+    $yellowa: rgba(#A1B5D8,0.8);
     background-image: linear-gradient(to right, $yellowa 100%, $yellowa 50%);
   }
 }

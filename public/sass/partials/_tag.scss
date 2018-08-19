@@ -31,14 +31,14 @@
   }
   &__link {
     background:$yellow;
-    color:$black;
+    color: $white;
     display: flex;
     padding-left: 10px;
     clip-path: polygon(10px 0%, 100% 1%, 100% 100%, 10px 100%, 0% 50%);
     &--active {
       background: lighten($purple, 40%);
       .tag__text {
-        color: white;
+        color: $white;
       }
     }
   }
@@ -48,9 +48,10 @@
   }
   &__count {
     padding: 1rem 1rem;
-    background: white;
+    background: $white;
     border-left: 3px solid rgba(0,0,0,0.1);
     margin-right: -1px; /* ugh */
     background-clip: padding-box;
+    color: $black;
   }
 }

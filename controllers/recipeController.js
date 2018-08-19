@@ -79,7 +79,7 @@ exports.updateRecipe = async (req, res) => {
 exports.getRecipeBySlug = async (req, res, next) => {
     const recipe = await Recipe.findOne({
         slug: req.params.slug
-    }).populate('author');
+    }).populate('author reviews');
     if (!recipe) return next();
     res.render('recipe', {recipe, title: recipe.title})
 

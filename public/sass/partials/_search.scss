@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   &__results {
-    background: white;
+    background: $white;
     position: absolute;
     width: 100%;
     top: 100%;
@@ -14,7 +14,7 @@
   &__input {
     font-size: 30px;
     background: none;
-    color: white;
+    color: $white;
     outline: 0;
     border: 0;
   }
@@ -22,9 +22,22 @@
     padding: 10px;
     display: block;
     border-bottom: 1px solid #ececec;
+    color: $black;
     &--active {
       background: #f1f1f1;
     }
   }
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $white;
+}

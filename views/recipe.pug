@@ -1,24 +1,31 @@
 extends layout
 
 include mixins/_reviewForm
+include mixins/_review
 
 block content
-    .single
-        .single__hero
-            img.single__image(src=`/uploads/${recipe.photo || 'recipe.png'}`)
-            h2.title.title--single
-                a(href=`/recipe/${recipe.slug}`) #{recipe.title}
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${recipe.photo || 'recipe.png'}`)
+      h2.title.title--single
+        a(href=`/recipe/${recipe.slug}`) #{recipe.title}
 
-    .single__details.inner
-        //img.single__map(src=h.staticMap(recipe.location.coordinates))
-        //p.single__location= recipe.location.address
-        p= recipe.description
+  .single__details.inner
+    //img.single__map(src=h.staticMap(recipe.location.coordinates))
+    //p.single__location= recipe.location.address
+    p= recipe.description
 
-        if recipe.tags
-            ul.tags
-                each tag in recipe.tags
-                    li.tag
-                        a.tag__link(href=`/tags/${tag}`)
-                            span.tag__text  ##{tag}
-        if user
-            +reviewForm(recipe)
+    if recipe.tags
+      ul.tags
+        each tag in recipe.tags
+          li.tag
+            a.tag__link(href=`/tags/${tag}`)
+              span.tag__text  ##{tag}
+    if user
+      +reviewForm(recipe)
+
+    if recipe.reviews
+      .reviews
+        each review in recipe.reviews
+          .review
+            +review(review)

@@ -55,4 +55,10 @@ recipeSchema.statics.getTagsList = function() {
     ]);
 };
 
+recipeSchema.virtual('reviews', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'recipe'
+});
+
 module.exports = mongoose.model('Recipe', recipeSchema);
