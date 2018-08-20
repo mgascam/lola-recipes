@@ -4,4 +4,4 @@ node_modules/
 .vscode
 variables.env
 variables.env.now
-public/dist/
+public/uploads
