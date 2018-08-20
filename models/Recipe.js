@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
         trim: true
     },
     tags: [String],
+    steps: [String],
     created: {
         type: Date,
         default: Date.now
