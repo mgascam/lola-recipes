@@ -49,8 +49,38 @@ exports.createRecipe = async (req, res) => {
 };
 
 exports.getRecipes = async (req, res) => {
-    const recipes = await Recipe.find();
-    res.render('recipes', {title: 'Recipes', recipes});
+    const page = req.params.page || 1;
+    const limit = 6;
+    const skip = (page * limit) - limit;
+    const recipesPromise = Recipe
+        .find()
+        .skip(skip)
+        .limit(limit)
+        .sort({
+            created: 'desc'
+        });
+    const countPromise = Recipe.count();
+
+    const [recipes, count] = await Promise.all([
+        recipesPromise,
+        countPromise
+    ]);
+    const pages = Math.ceil(count / limit);
+
+    if (!recipes.length && skip) {
+        req.flash('info',
+            `Hey! You asked for page ${page}. But that doesn't exist. So I put you on page ${pages}`);
+        res.redirect(`/recipes/page/${pages}`);
+        return;
+    }
+
+    res.render('recipes', {
+        title: 'Recipes',
+        recipes,
+        page,
+        pages,
+        count
+    });
 };
 
 const confirmOwner = (recipe, user) => {

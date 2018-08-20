@@ -8,6 +8,9 @@
   &__next {
     flex: 0 0 auto;
     padding: 1rem 3rem 1rem 1rem;
+    a {
+      color: #046b1d;
+    }
     a:after {
       margin-left: 1rem;
       content: '→'
@@ -16,6 +19,9 @@
   &__prev {
     flex: 0 0 auto;
     padding: 1rem 1rem 1rem 3rem;
+    a {
+      color: #046b1d;
+    }
     a:before {
       margin-right: 1rem;
       content: '←'

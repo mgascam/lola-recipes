@@ -7,7 +7,18 @@ const reviewController = require('../controllers/reviewController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', catchErrors(recipeController.getRecipes));
-router.get('/recipes', catchErrors(recipeController.getRecipes));
+router.get('/recipes',
+    catchErrors(recipeController.getRecipes)
+);
+router.get('/recipes/page/:page',
+    catchErrors(recipeController.getRecipes)
+);
+router.get('/recipes/:id/edit',
+    catchErrors(recipeController.editRecipe)
+);
+router.get('/recipe/:slug',
+    catchErrors(recipeController.getRecipeBySlug)
+);
 router.get('/add',
     authController.isLoggedIn,
     recipeController.addRecipe
@@ -22,10 +33,12 @@ router.post('/add/:id',
     catchErrors(recipeController.resize),
     catchErrors(recipeController.updateRecipe)
 );
-router.get('/recipes/:id/edit', catchErrors(recipeController.editRecipe));
-router.get('/recipe/:slug', catchErrors(recipeController.getRecipeBySlug));
-router.get('/tags', catchErrors(recipeController.getRecipesByTag));
-router.get('/tags/:tag', catchErrors(recipeController.getRecipesByTag));
+router.get('/tags',
+    catchErrors(recipeController.getRecipesByTag)
+);
+router.get('/tags/:tag',
+    catchErrors(recipeController.getRecipesByTag)
+);
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
 router.get('/register', userController.registerForm);
@@ -40,24 +53,37 @@ router.post('/register',
 
 router.get('/logout', authController.logout);
 
-router.get('/account', authController.isLoggedIn, userController.account);
-router.post('/account', catchErrors(userController.updateAccount));
-router.post('/account/forgot', catchErrors(authController.forgot));
-router.get('/account/reset/:token', catchErrors(authController.reset));
+router.get('/account',
+    authController.isLoggedIn, userController.account);
+router.post('/account',
+    catchErrors(userController.updateAccount));
+router.post('/account/forgot',
+    catchErrors(authController.forgot));
+router.get('/account/reset/:token',
+    catchErrors(authController.reset));
 router.post('/account/reset/:token',
     authController.confirmedPasswords,
     catchErrors(authController.update)
 );
-router.get('/hearts', authController.isLoggedIn, catchErrors(recipeController.getHearts));
+router.get('/hearts',
+    authController.isLoggedIn,
+    catchErrors(recipeController.getHearts)
+);
 
 router.post('/reviews/:id', authController.isLoggedIn,
     catchErrors(reviewController.addReview));
 
-router.get('/top', catchErrors(recipeController.getTopRecipes));
+router.get('/top',
+    catchErrors(recipeController.getTopRecipes)
+);
 /**
  * API
  */
-router.get('/api/search', catchErrors(recipeController.searchRecipes));
-router.post('/api/recipes/:id/heart', catchErrors(recipeController.heartRecipe));
+router.get('/api/search',
+    catchErrors(recipeController.searchRecipes)
+);
+router.post('/api/recipes/:id/heart',
+    catchErrors(recipeController.heartRecipe)
+);
 
 module.exports = router;

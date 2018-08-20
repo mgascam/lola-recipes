@@ -1,8 +1,10 @@
 extends layout
 include mixins/_recipeCard
+include mixins/_pagination
 block content
     .inner
         h2= title
         .recipes
             each recipe in recipes
                 +recipeCard(recipe)
+        +pagination(page,pages,count)
