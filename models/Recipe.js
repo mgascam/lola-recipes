@@ -55,10 +55,53 @@ recipeSchema.statics.getTagsList = function() {
     ]);
 };
 
+recipeSchema.statics.getTopRecipes = function(){
+  return this.aggregate([
+      // Lookup Recipes and populate their reviews
+      { $lookup: {
+          from: 'reviews',
+          localField: '_id',
+          foreignField: 'recipe',
+          as: 'reviews'
+        }
+      },
+      // filter for only items that have 2 or more reviews
+      {
+          $match: {
+              'reviews.1': { $exists: true }
+          }
+      },
+      // add the average reviews field
+      {
+          $addFields: {
+              averageRating: {
+                  $avg: '$reviews.rating'
+              }
+          }
+      },
+      // sort it by new field, highest reviews firts
+      {
+          $sort: {
+              averageRating: -1
+          }
+      },
+      // Limit to at most 10
+      { $limit: 10 }
+  ]);
+};
+
 recipeSchema.virtual('reviews', {
     ref: 'Review',
     localField: '_id',
     foreignField: 'recipe'
 });
+
+function autopopulate(next) {
+    this.populate('reviews');
+    next();
+}
+
+recipeSchema.pre('find', autopopulate);
+recipeSchema.pre('findOne', autopopulate);
 
 module.exports = mongoose.model('Recipe', recipeSchema);

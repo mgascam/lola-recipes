@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .inner
+    h2 Top #{recipes.length} Recipes
+    table.table
+      thead
+        td photo
+        td ranking
+        td title
+        td reviews
+        td Average Rating
+      each recipe, i in recipes
+        tr
+          td
+            a(href=`/store/${recipe.slug}`)
+              img(width=200 src=`/uploads/${recipe.photo || 'recipe.png'}` alt=recipe.name)
+          td #{i + 1}
+          td: a(href=`/recipe/${recipe.slug}`)= recipe.title
+          td= recipe.reviews.length
+          td #{Math.round(recipe.averageRating * 10) / 10} / 5

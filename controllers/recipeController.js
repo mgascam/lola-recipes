@@ -124,3 +124,11 @@ exports.getHearts = async (req,res) => {
     const recipes = await Recipe.find({ _id: { $in: req.user.hearts }});
     res.render('recipes', { title: 'Hearted Recipes', recipes });
 }
+
+exports.getTopRecipes = async (req, res) => {
+    const recipes = await Recipe.getTopRecipes();
+    res.render('topRecipes', {
+        recipes,
+        title: '🌟 Top Recipes!'
+    });
+};

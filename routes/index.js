@@ -52,6 +52,8 @@ router.get('/hearts', authController.isLoggedIn, catchErrors(recipeController.ge
 
 router.post('/reviews/:id', authController.isLoggedIn,
     catchErrors(reviewController.addReview));
+
+router.get('/top', catchErrors(recipeController.getTopRecipes));
 /**
  * API
  */
